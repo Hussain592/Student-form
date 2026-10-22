@@ -42,6 +42,7 @@ export default function ApplicationForm({ form, update, submit, status, message,
         <header className="mb-8 text-center">
           <img className="mx-auto mb-4 size-14 rounded-xl object-cover object-[center_35%]" src={babulLogo} alt="Babul Tech logo" />
           <h1 className="mb-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Student interest form</h1>
+          <p className="course-title mb-2 text-base font-semibold sm:text-lg">Web &amp; App Development with AI</p>
           <p className="m-0 text-sm leading-6 text-slate-400">Share your contact details and current education or work.</p>
         </header>
 

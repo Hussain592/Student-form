@@ -45,6 +45,16 @@ body {
   animation: intro-progress 1.05s ease-in-out both;
 }
 
+@keyframes course-title-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.course-title {
+  color: #5eead4;
+  animation: course-title-in .6s .16s cubic-bezier(.2,.75,.25,1) both;
+}
+
 @keyframes status-in {
   from { opacity: 0; transform: translateY(5px) scale(.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
