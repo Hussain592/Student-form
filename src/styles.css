@@ -74,6 +74,23 @@ body {
   animation: check-pop .28s ease-out both;
 }
 
+.form-qr-svg {
+  display: block;
+  width: 176px;
+  height: 176px;
+  max-width: none;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.form-qr-svg path {
+  fill: #000 !important;
+}
+
+.form-qr-svg rect {
+  fill: #fff !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;

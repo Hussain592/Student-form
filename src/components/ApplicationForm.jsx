@@ -115,8 +115,8 @@ export default function ApplicationForm({ form, update, submit, status, message,
         </form>
 
         <aside className="mx-auto mt-7 flex w-full flex-col items-center gap-3 rounded-2xl border border-slate-700/80 bg-[#101a29]/80 px-5 py-5 text-center animate-form-in" aria-label="BabulTech form QR code">
-          <div className="grid size-36 place-items-center rounded-2xl bg-white p-2 shadow-lg shadow-black/20">
-            <QRCodeSVG className="block shrink-0" value={formUrl} size={128} level="Q" marginSize={4} bgColor="#ffffff" fgColor="#07131f" title="BabulTech form QR code" />
+          <div className="grid size-48 place-items-center rounded-2xl bg-white p-2 shadow-lg shadow-black/20">
+            <QRCodeSVG className="form-qr-svg" value={formUrl} size={176} level="Q" marginSize={4} bgColor="#ffffff" fgColor="#000000" title="BabulTech form QR code" />
           </div>
           <p className="m-0 text-sm font-semibold text-slate-200">Scan with QR code to open the BabulTech form</p>
         </aside>
