@@ -19,7 +19,9 @@ function doPost(event) {
     };
 
     if (submission.name.length < 2) throw new Error('Please enter your name.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(submission.email)) throw new Error('Please enter a valid email address.');
+    if (submission.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(submission.email)) {
+      throw new Error('Please enter a valid email address or leave it blank.');
+    }
     if (!/^[+()\d\s.-]{7,30}$/.test(submission.phone) || (submission.phone.match(/\d/g) || []).length < 7) {
       throw new Error('Please enter a valid phone number.');
     }

@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import ApplicationForm from './components/ApplicationForm.jsx';
 import babulLogo from './Babul.5.png';
 
-const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || '';
+// Keep the public Apps Script web app URL as a fallback so production builds
+// still submit when the host (for example Netlify) has no Vite env variable.
+const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL ||
+  'https://script.google.com/macros/s/AKfycbxw9xyh5yytoNJXUD24tL9QMTYxtHljw0OLZtHMFHa2qj7tLfZLgcNtvBt_y3ZjkZic/exec';
 const EMPTY_FORM = {
   name: '',
   email: '',

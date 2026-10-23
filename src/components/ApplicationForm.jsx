@@ -57,8 +57,8 @@ export default function ApplicationForm({ form, update, submit, status, message,
             </Field>
 
             <Field>
-              <label className={labelClass} htmlFor="email">Email address <span className="text-teal-300">*</span></label>
-              <input className={inputClass} id="email" name="email" value={form.email} onChange={update} placeholder="you@example.com" type="email" autoComplete="email" required maxLength="254" />
+              <label className={labelClass} htmlFor="email">Email address <span className="text-slate-500">(optional)</span></label>
+              <input className={inputClass} id="email" name="email" value={form.email} onChange={update} placeholder="you@example.com" type="email" autoComplete="email" maxLength="254" />
             </Field>
 
             <Field>
