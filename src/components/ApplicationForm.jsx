@@ -1,4 +1,5 @@
-import babulLogo from '../Babul.png';
+import babulLogo from '../Babul.5.png';
+import { QRCodeSVG } from 'qrcode.react';
 
 function Field({ children, className = '' }) {
   return <div className={`min-w-0 ${className}`}>{children}</div>;
@@ -35,14 +36,16 @@ function StatusIcon({ status }) {
 }
 
 export default function ApplicationForm({ form, update, submit, status, message, frameRef }) {
+  const formUrl = `${window.location.origin}${window.location.pathname}`;
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 sm:px-6">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(13,91,84,0.22),transparent_55%),linear-gradient(155deg,#0b1220_10%,#101c2b_68%,#0c292c_100%)]" />
       <div className="relative w-full max-w-xl animate-form-in">
         <header className="mb-8 text-center">
-          <img className="mx-auto mb-4 size-14 rounded-xl object-cover object-[center_35%]" src={babulLogo} alt="Babul Tech logo" />
-          <h1 className="mb-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Student interest form</h1>
-          <p className="course-title mb-2 text-base font-semibold sm:text-lg">Web &amp; App Development with AI</p>
+          <img className="mx-auto mb-4 size-20 rounded-2xl object-contain shadow-[0_0_24px_rgba(45,212,191,.12)]" src={babulLogo} alt="BabulTech logo" />
+          <h1 className="mb-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Student Registration form</h1>
+          <p className="course-title mb-2 text-base font-semibold sm:text-lg">Web  Development with AI</p>
           <p className="m-0 text-sm leading-6 text-slate-400">Share your contact details and current education or work.</p>
         </header>
 
@@ -67,6 +70,18 @@ export default function ApplicationForm({ form, update, submit, status, message,
               <label className={labelClass} htmlFor="education">Education / current work <span className="text-teal-300">*</span></label>
               <input className={inputClass} id="education" name="education" value={form.education} onChange={update} placeholder="What are you studying or doing?" required maxLength="200" />
             </Field>
+
+            <fieldset className="min-w-0 sm:col-span-2">
+              <legend className={labelClass}>Do you have a laptop? <span className="text-teal-300">*</span></legend>
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                {['Yes', 'No'].map((answer) => (
+                  <label key={answer} className={`flex min-h-11 cursor-pointer items-center gap-2.5 rounded-lg border px-3.5 py-2.5 text-sm transition ${form.hasLaptop === answer ? 'border-teal-400 bg-teal-400/10 text-teal-100' : 'border-slate-700 bg-[#0b1624]/90 text-slate-300 hover:border-slate-500'}`}>
+                    <input className="size-4 accent-teal-400" type="radio" name="hasLaptop" value={answer} checked={form.hasLaptop === answer} onChange={update} required />
+                    <span>{answer}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
             <Field className="sm:col-span-2">
               <label className={labelClass} htmlFor="motivation">Why are you interested in this course? <span className="text-teal-300">*</span></label>
@@ -98,6 +113,13 @@ export default function ApplicationForm({ form, update, submit, status, message,
           </button>
           <p className="mb-0 mt-4 text-center text-xs text-slate-500">Your information is only used to contact you about this course.</p>
         </form>
+
+        <aside className="mx-auto mt-7 flex w-full flex-col items-center gap-3 rounded-2xl border border-slate-700/80 bg-[#101a29]/80 px-5 py-5 text-center animate-form-in" aria-label="BabulTech form QR code">
+          <div className="grid size-36 place-items-center rounded-2xl bg-white p-2 shadow-lg shadow-black/20">
+            <QRCodeSVG className="block size-full" value={formUrl} size={128} level="Q" marginSize={4} title="BabulTech form QR code" />
+          </div>
+          <p className="m-0 text-sm font-semibold text-slate-200">Scan with QR code to open the BabulTech form</p>
+        </aside>
       </div>
 
       <iframe ref={frameRef} name="sheets-submit-frame" title="Form submission response" className="absolute size-px overflow-hidden [clip:rect(0,0,0,0)]" tabIndex="-1" aria-hidden="true" />

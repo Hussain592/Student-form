@@ -1,5 +1,5 @@
 const SHEET_NAME = 'Student Interests';
-const HEADERS = ['Full name', 'Email address', 'Phone number', 'Education / current work', 'Why are you interested?'];
+const HEADERS = ['Full name', 'Email address', 'Phone number', 'Education / current work', 'Do you have a laptop?', 'Why are you interested?'];
 
 function doPost(event) {
   const parameters = event && event.parameter ? event.parameter : {};
@@ -14,6 +14,7 @@ function doPost(event) {
       email: clean(parameters.email, 254),
       phone: clean(parameters.phone, 30),
       education: clean(parameters.education, 200),
+      hasLaptop: clean(parameters.hasLaptop, 3),
       motivation: clean(parameters.motivation, 500),
     };
 
@@ -25,6 +26,10 @@ function doPost(event) {
     if (!submission.education || !submission.motivation || parameters.consent !== 'true') {
       throw new Error('Please complete all required fields and agree to the contact notice.');
     }
+    if (!['yes', 'no'].includes(submission.hasLaptop.toLowerCase())) {
+      throw new Error('Please select whether you have a laptop.');
+    }
+    submission.hasLaptop = submission.hasLaptop.toLowerCase() === 'yes' ? 'Yes' : 'No';
 
     const spreadsheetId = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
     if (!spreadsheetId) throw new Error('The course team has not finished configuring the form.');
@@ -51,7 +56,8 @@ function doPost(event) {
         { key: 'email', names: ['email address', 'email'], header: HEADERS[1] },
         { key: 'phone', names: ['phone number', 'phone'], header: HEADERS[2] },
         { key: 'education', names: ['education / current work', 'current education or work', 'education/current work'], header: HEADERS[3] },
-        { key: 'motivation', names: ['why are you interested?', 'why are you interested in this course?', 'course motivation'], header: HEADERS[4] },
+        { key: 'hasLaptop', names: ['do you have a laptop?', 'laptop', 'has laptop', 'laptop available?'], header: HEADERS[4] },
+        { key: 'motivation', names: ['why are you interested?', 'why are you interested in this course?', 'course motivation'], header: HEADERS[5] },
       ];
       const indexes = {};
 

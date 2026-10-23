@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ApplicationForm from './components/ApplicationForm.jsx';
-import babulLogo from './Babul.png';
+import babulLogo from './Babul.5.png';
 
 const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || '';
 const EMPTY_FORM = {
@@ -8,6 +8,7 @@ const EMPTY_FORM = {
   email: '',
   phone: '',
   education: '',
+  hasLaptop: '',
   motivation: '',
   consent: false,
   website: '',
@@ -95,6 +96,7 @@ export default function App() {
         email: form.email,
         phone: form.phone,
         education: form.education,
+        hasLaptop: form.hasLaptop,
         motivation: form.motivation,
         consent: form.consent,
         website: form.website,
@@ -123,11 +125,11 @@ export default function App() {
       {showIntro ? (
         <section className="relative grid min-h-screen place-items-center overflow-hidden bg-[radial-gradient(ellipse_at_50%_100%,rgba(13,91,84,0.22),transparent_55%),linear-gradient(155deg,#0b1220_10%,#101c2b_68%,#0c292c_100%)] px-4 text-center" aria-label="Welcome">
           <div className="animate-intro-in">
-            <img className="mx-auto mb-5 size-20 rounded-2xl object-cover object-[center_35%] shadow-[0_0_40px_rgba(45,212,191,.16)]" src={babulLogo} alt="Babul Tech logo" />
+            <img className="mx-auto mb-5 size-20 rounded-2xl object-contain shadow-[0_0_24px_rgba(45,212,191,.12)] animate-intro-in" src={babulLogo} alt="BabulTech logo" />
             <p className="mb-2 text-xs font-semibold uppercase tracking-[.24em] text-teal-300">Babul Tech</p>
             <h1 className="m-0 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Student interest form</h1>
             <p className="mt-3 text-sm text-slate-400">Your next step starts here.</p>
-            <div className="mx-auto mt-7 h-1 w-24 overflow-hidden rounded-full bg-white/10"><div className="h-full w-full origin-left animate-intro-progress rounded-full bg-teal-300" /></div>
+          <div className="mx-auto mt-7 h-1 w-24 overflow-hidden rounded-full bg-white/10"><div className="h-full w-full origin-left animate-intro-progress rounded-full bg-teal-300" /></div>
           </div>
         </section>
       ) : (
