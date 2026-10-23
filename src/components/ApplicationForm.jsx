@@ -1,5 +1,4 @@
 import babulLogo from '../Babul.5.png';
-import { QRCodeCanvas } from 'qrcode.react';
 
 function Field({ children, className = '' }) {
   return <div className={`min-w-0 ${className}`}>{children}</div>;
@@ -36,8 +35,6 @@ function StatusIcon({ status }) {
 }
 
 export default function ApplicationForm({ form, update, submit, status, message, frameRef }) {
-  const formUrl = `${window.location.origin}${window.location.pathname}`;
-
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 sm:px-6">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(13,91,84,0.22),transparent_55%),linear-gradient(155deg,#0b1220_10%,#101c2b_68%,#0c292c_100%)]" />
@@ -114,12 +111,6 @@ export default function ApplicationForm({ form, update, submit, status, message,
           <p className="mb-0 mt-4 text-center text-xs text-slate-500">Your information is only used to contact you about this course.</p>
         </form>
 
-        <aside className="mx-auto mt-7 flex w-full flex-col items-center gap-3 rounded-2xl border border-slate-700/80 bg-[#101a29]/80 px-5 py-5 text-center animate-form-in" aria-label="BabulTech form QR code">
-          <div className="grid size-48 place-items-center rounded-2xl bg-white p-2 shadow-lg shadow-black/20">
-            <QRCodeCanvas className="form-qr-canvas" value={formUrl} size={176} level="Q" marginSize={4} bgColor="#ffffff" fgColor="#000000" title="BabulTech form QR code" />
-          </div>
-          <p className="m-0 text-sm font-semibold text-slate-200">Scan with QR code to open the BabulTech form</p>
-        </aside>
       </div>
 
       <iframe ref={frameRef} name="sheets-submit-frame" title="Form submission response" className="absolute size-px overflow-hidden [clip:rect(0,0,0,0)]" tabIndex="-1" aria-hidden="true" />

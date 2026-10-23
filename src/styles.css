@@ -74,13 +74,6 @@ body {
   animation: check-pop .28s ease-out both;
 }
 
-.form-qr-canvas {
-  display: block;
-  width: 176px;
-  height: 176px;
-  max-width: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
